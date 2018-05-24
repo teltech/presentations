@@ -1,0 +1,67 @@
+
+Kubernetes 101
+May 23th, 2018
+
+* What we will cover
+- What is Kubernetes
+- Brief history of Kubernetes
+- Architecture Overview
+- Kubernetes Resources
+- Live Demo
+
+* What is Kubernetes
+- A project for managing, orchestrating, and discovering containers across a set of nodes (a cluster).
+- 100% open source
+- Written in GO
+- Created by Google
+
+* What does "Kubernetes" means?
+- Kubernetes = Greek for “helmsman” or “pilot”
+.image k8s_logo.png _ 300
+
+* Brief History
+- Released in June 2014
+- Kubernetes is the open-source version of Google's internal system called Borg
+- Borg has been running in google for over 12+ years
+
+* Architecture Overview
+- Each cluster contains a Master(API Server) node and one or more worker nodes.
+- Communication with Kubernetes happens via kubectl cmd line tool
+- Each worker node runs two applications: kubelet to communicate with the master and kube-proxy for network overlay/service discovery
+
+* Architecture Overview
+.image k8s_architecture2.png _ 700
+.link https://kubernetes.io/docs/concepts/overview/components/ https://kubernetes.io/docs/concepts/overview/components/
+
+* What is a container
+- A piece of software that includes everything needed to run in any isolated environment. (OS, Libraries, Application Code)
+- Most popular container runtime Docker.  But there are others, CoreOS has one called rocket (rkt)
+- Have been around a lot longer than Docker, LXC (linux containers), Docker just wrapped a nice API in front of it
+.image container.png _ 400
+
+* Kubernetes Resources
+.image kube-objects.png _ 300
+
+* Kubernetes - Pods
+- Group of one or more containers
+- Containers in a pod share storage/network
+- Containers in a pod are co-located and co-scheduled 
+.code pod.yaml
+
+* Kubernetes - Deployments
+- Controls the state of a Pod (Removes unhealthy ones and create new ones)
+- How many pods should be running
+- Determines how to rollout a new version of a pod
+.code deployment.yaml
+
+* Kubernetes - Services
+- Once you have your application living in kubernetes, you need a way to access them externally and internally
+- Pod lifetimes are "short lived" their addresses and location can change
+- Services uses label selectors to route traffic to the correct Pod
+.code service.yaml
+
+* Demos
+.image k8s_knowledge.jpeg _ 500
+
+* K8s
+.image k8s_rocks.jpeg _ 500

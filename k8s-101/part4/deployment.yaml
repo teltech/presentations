@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: srv1
+spec:
+  replicas: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: srv1
+    spec:
+      containers:
+      - name: srv1
+        image: us.gcr.io/kube-test-204901/srv1:build-1
+        imagePullPolicy: Always
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 10
+          periodSeconds: 1
+          successThreshold: 1
+#        livenessProbe:
+#          httpGet:
+#            path: /healthz
+#            port: 80
+#          initialDelaySeconds: 5
+#          periodSeconds: 1
+        ports:
+          - containerPort: 80
+            protocol: TCP
