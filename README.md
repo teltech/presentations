@@ -6,3 +6,5 @@ This repository contains the presentations from the awesome engineering team at 
 + [Ionic](Ionic)
 + [JWT](JWT)
 + [TDD in JS](TDDinJS)
++ [Performing Online Schema Changes on MySQL with zero downtime](gh-ost)
+
