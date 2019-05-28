@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testing-prom
+  labels:
+    app: testing-prom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testing-prom
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "5000"
+        prometheus.io/scrape: "true"
+      labels:
+        app: testing-prom
+    spec:
+      containers:
+      - name: testing-prom
+        image: us.gcr.io/tommyde-191320/prom-test:3us.gcr.io/tommyde-191320/prom-test:3
+        ports: 
+        - containerPort: 5000

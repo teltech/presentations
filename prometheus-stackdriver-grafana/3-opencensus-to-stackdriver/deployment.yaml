@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oc2sd
+  labels:
+    app: oc2sd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oc2sd
+  template:
+    metadata:
+      labels:
+        app: oc2sd
+    spec:
+      containers:
+      - name: toc2sd
+        image: us.gcr.io/tommyde-191320/prom-test:3us.gcr.io/tommyde-191320/oc2sd:1
+        ports: 
+        - containerPort: 5000
